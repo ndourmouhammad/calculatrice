@@ -1,14 +1,17 @@
 pipeline {
 	agent any
 
-	options {
-		skipDefaultCheckout(true)
-	}
-
 	stages {
+		stage('Clean workspace') {
+			steps {
+				deleteDir()
+			}
+		}
+
 		stage('Checkout') {
 			steps {
-				checkout scm
+				git url: 'https://github.com/ndourmouhammad/calculatrice.git',
+				branch: 'main'
 			}
 		}
 
